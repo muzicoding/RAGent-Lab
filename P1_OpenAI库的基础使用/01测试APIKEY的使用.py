@@ -5,14 +5,22 @@
         `export OPENAI_API_KEY="sk-71ec2ae3*********ea1b525809"`
         `export DASHSCOPE_API_KEY="sk-71ec2ae3*********ea1b525809"`
     3. 保存并重启PyCharm
+
+    或者可以写在项目根目录下的.env文件中，然后用dotenv引用
 """
 
+import dotenv
 import os
 from openai import OpenAI
+
+# 加载环境变量
+dotenv.load_dotenv()
 
 client = OpenAI(
     # 若没有配置环境变量，请用百炼API Key将下行替换为：api_key="sk-xxx",
     # api_key="sk-71ec2ae3*********ea1b525809", # 配置完环境变量后就不用明文写在这了
+
+    api_key=os.getenv("OPENAI_API_KEY"),
     base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
 
     # Ollama本地url
@@ -28,5 +36,6 @@ completion = client.chat.completions.create(
     ],
     stream=True
 )
+
 for chunk in completion:
     print(chunk.choices[0].delta.content, end="", flush=True)
