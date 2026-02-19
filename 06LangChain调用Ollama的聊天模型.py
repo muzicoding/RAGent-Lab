@@ -6,7 +6,9 @@ import dotenv
 dotenv.load_dotenv()
 
 # model = ChatTongyi(model="qwen3-max")
-model = ChatOllama(model="qwen3:4b")
+
+model = ChatOllama(model="qwen3:4b",
+                   base_url="http://10.190.15.2:11434")
 
 messages = [
     SystemMessage(content="你是一个边塞诗人"),
