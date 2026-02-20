@@ -3,7 +3,6 @@ from langchain_core.prompts import PromptTemplate, ChatPromptTemplate, MessagesP
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_core.chat_history import InMemoryChatMessageHistory
-from requests import session
 
 model = ChatTongyi(model="qwen3-max")
 # prompt = PromptTemplate.from_template(
